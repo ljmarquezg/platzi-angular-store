@@ -9,11 +9,11 @@ import { Component, signal } from '@angular/core';
   styleUrl: './labs.component.scss'
 })
 export class LabsComponent {
-  tasks = [
+  tasks = signal([
     'Instalar Angualr CLI',
     'Crear un nuevo proyecto',
     'Crear un componente',
-  ]
+  ]);
   
   name = signal('Labs');
   age = 30;
