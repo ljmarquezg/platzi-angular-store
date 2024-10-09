@@ -14,6 +14,16 @@ export class LabsComponent {
     'Crear un nuevo proyecto',
     'Crear un componente',
   ]
+  
   name = 'Labs';
   age = 30;
+  disabled = true;
+  img = 'https://angular.io/assets/images/logos/angular/angular.png';
+
+  person = {
+    name:'Labs',
+    age: 30,
+    disabled: true,
+    avatar: 'https://angular.io/assets/images/logos/angular/angular.png',
+  }
 }

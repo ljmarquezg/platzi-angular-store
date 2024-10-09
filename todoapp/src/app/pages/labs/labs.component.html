@@ -5,3 +5,14 @@
 </ul>
 <hr />
 <p> Mi nombre es: {{ name }} and I'm {{ age }} years old</p>
+<hr />
+
+<img [src]="img" alt="">
+<input type="text" placeholder="Type new todo" [value]="name"/>
+<button [disabled]="disabled">Change name</button>
+
+<hr />
+<h2>{{ person.name }}</h2>
+<img [src]="person.avatar" alt="">
+<input type="number" placeholder="18" [value]="person.age"/>
+<button [disabled]="disabled">Change name</button>
