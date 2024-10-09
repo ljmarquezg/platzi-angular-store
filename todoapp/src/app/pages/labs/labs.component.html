@@ -5,7 +5,7 @@
     </li>
     </ul>
     <hr />
-    <p> Mi nombre es: {{ name }} and I'm {{ age }} years old</p>
+    <p> Mi nombre es: {{ name() }} and I'm {{ age }} years old</p>
     <hr />
 
     <img [src]="img" alt="">
@@ -28,4 +28,8 @@
 
     <h3>Key Down</h3>
     <input type="text" (keydown)="keyDownHandler($event)"/>
+
+    <h2>Signals</h2>
+    <input type="text" (change)="changeHandler($event)"/>
+    <p>{{ name() }}</p>
 </div>
