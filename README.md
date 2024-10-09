@@ -9,3 +9,8 @@ npm i @angular/cli -g
 ```JS
 ng new todoapp --skip-tests
 ```
+
+## Create new component
+```JS
+ng g component ${dir/component-name}
+```
