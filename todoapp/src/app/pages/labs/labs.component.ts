@@ -26,4 +26,12 @@ export class LabsComponent {
     disabled: true,
     avatar: 'https://angular.io/assets/images/logos/angular/angular.png',
   }
+
+  clickHandler() {
+    alert('Hello Labs');
+  }
+
+  changeHandler(event: Event) {
+    console.log(event);
+  }
 }
