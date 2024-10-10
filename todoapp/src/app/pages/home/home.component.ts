@@ -59,13 +59,16 @@ export class HomeComponent {
     this.tasks.update((tasks) => tasks.filter((_, i) => i !== index));
   }
 
-  updateTaskStatus(id: number) {
-    this.tasks.update((task) => {
-      return task.map((t) => {
-        if (t.id === id) {
-          t.completed = !t.completed;
+  updateTaskStatus(index: number) {
+    this.tasks.update((tasks) => {
+      return tasks.map((task, position) => {
+        if (position === index) {
+          return {
+            ...task,
+            completed: !task.completed,
+          }
         }
-        return t;
+        return task;
       });
     })
   }
