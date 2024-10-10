@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
+import { Task } from '../../../models/task.model';
 
 @Component({
   selector: 'app-home',
@@ -11,25 +12,61 @@ import { Component, signal } from '@angular/core';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  tasks = signal([
-    'Instalar Angualr CLI',
-    'Crear un nuevo proyecto',
-    'Crear un componente',
-    'Crear un servicio',
+  tasks = signal<Task[]>([
+    {
+      id: Date.now(),
+      title: 'Instalar Angualr CLI',
+      completed: false,
+    },
+    {
+      id: Date.now() + 1,
+      title: 'Crear un nuevo proyecto',
+      completed: false,
+    },
+    {
+      id: Date.now() + 2,
+      title: 'Crear un componente',
+      completed: false,
+    },
+    {
+      id: Date.now() + 3,
+      title: 'Crear un servicio',
+      completed: false,
+    },
   ]);
   
   changeHandler(event: Event) {
     const input = event.target as HTMLInputElement;
-    const newTask = input.value;
+    const title = input.value;
 
-    if (newTask) {
-      this.tasks.update((tasks) => [...tasks, newTask]);
+    if (title) {
+      this.addTask(title);
+      input.value = '';
     }
+  }
 
-    input.value = '';
+  addTask(title: string) {
+    const newTask: Task = {
+      id: Date.now(),
+      title,
+      completed: false,
+    };
+
+    this.tasks.update((tasks) => [...tasks, newTask]);
   }
 
   deleteTask(index: number) {
     this.tasks.update((tasks) => tasks.filter((_, i) => i !== index));
+  }
+
+  updateTaskStatus(id: number) {
+    this.tasks.update((task) => {
+      return task.map((t) => {
+        if (t.id === id) {
+          t.completed = !t.completed;
+        }
+        return t;
+      });
+    })
   }
 }
