@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, inject, Injector, OnInit, signal } from '@angular/core';
 import { Task } from '../../../models/task.model';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -13,30 +13,11 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
-  tasks = signal<Task[]>([
-    {
-      id: Date.now(),
-      title: 'Instalar Angualr CLI',
-      completed: false,
-    },
-    {
-      id: Date.now() + 1,
-      title: 'Crear un nuevo proyecto',
-      completed: false,
-    },
-    {
-      id: Date.now() + 2,
-      title: 'Crear un componente',
-      completed: false,
-    },
-    {
-      id: Date.now() + 3,
-      title: 'Crear un servicio',
-      completed: false,
-    },
-  ]);
+export class HomeComponent implements OnInit {
+  tasks = signal<Task[]>([]);
   
+  injector = inject(Injector);
+
   newTitleCtrl = new FormControl('', {
     nonNullable: true,
     validators: [
@@ -137,5 +118,21 @@ export class HomeComponent {
 
   changeFilter(filter: 'all' | 'pending' | 'completed') {
     this.filter.set(filter);
+  }
+
+  ngOnInit() {
+    const storage = localStorage.getItem('tasks');
+    if(storage) {
+      this.tasks.set(JSON.parse(storage));
+    }
+    this.trackTask();
+  }
+
+  trackTask(){
+    effect(() => {
+      const tasks = this.tasks();
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      console.log('effect', this.tasks);
+    }, {injector: this.injector});
   }
 }
