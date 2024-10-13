@@ -73,4 +73,10 @@
         <input type="number" [formControl]="widthCtrl"/>
     </p>
     <div class="box" [style.width.px]="widthCtrl.value"></div>
+
+    <p>
+        <input type="text" [formControl]="nameCtrl"/>
+        {{nameCtrl.invalid}} - {{nameCtrl.touched}}
+        <span class="message-error" [class.show]="nameCtrl.invalid && nameCtrl.touched">nombre inválido</span>
+    </p>
 </div>
