@@ -1,6 +1,26 @@
-# Todoapp
+# Todo List App - Built with Angular
+
+This repository contains a **Todo List Application** developed using **Angular**, leveraging Angular's modern reactive capabilities such as **signals** and **computed effects** for efficient state management. The app provides users with an intuitive interface to manage their daily tasks, and it's deployed on **Firebase** for seamless hosting and backend integration.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.10.
+
+## Key Features:
+
+- **Angular Signals & Computed Effects**:
+  - **Signals** are used for managing the app's reactive state, such as tracking the list of tasks and their completion status.
+  - **Computed Effects** allow for automatic recalculations, like counting remaining tasks or updating the UI when the task list changes, improving performance and reducing unnecessary change detection.
+
+- **Dynamic Template Rendering**:
+  - **NgIf**: Conditional rendering for showing or hiding elements based on the current state (e.g., showing the "No tasks" message when the task list is empty).
+  - **NgSwitch**: Used to toggle between different views or states within the app, such as different task filters (All, Active, Completed).
+  - **NgFor**: To dynamically render the list of tasks based on the state stored in signals.
+
+- **Firebase Integration**:
+  - **Firebase Hosting**: The app is deployed and hosted on Firebase, ensuring fast and secure delivery of the web app.
+  - **Firebase Firestore (optional)**: Easily extendable to store and sync tasks data across devices using Firebase Firestore for real-time database capabilities.
+
+## Install dependencies
+Run `npm install` to install the project dependencies.
 
 ## Development server
 
@@ -21,6 +41,22 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Deploy to Firebase (after configuring Firebase CLI and your project):
+Follow these steps to deploy your app to Firebase Hosting:
+- #### 1. Install Firebase CLI
+  - You need Firebase CLI (a command-line tool) to host your site with Firebase Hosting. Run the following npm command to install or update to the latest version of the CLI:
+  `npm install -g firebase-tools`
+- #### 2. Initialize the Project
+  - Open a terminal window and navigate to a root directory for your web app (if you don’t have one, you should create it).
+- #### 3. Login to Google
+  - Run `firebase login` command to log in
+- #### 4 Start the Project
+  - Run `firebase init` command in the root directory of your app:
+- ### 5 Deploy to Firebase Hosting
+  - When you have everything ready, deploy your web app. Place the static files (e.g., HTML, CSS, and JS) in the app’s deployment directory (the default directory is dist/todoapp/browser). Then, run this command from the root directory of your app:
+  `firebase deploy`
+
 
 ## Further help
 
