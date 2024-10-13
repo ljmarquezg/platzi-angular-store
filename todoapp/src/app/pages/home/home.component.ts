@@ -80,4 +80,38 @@ export class HomeComponent {
       });
     })
   }
+
+  updateTaskEditMode(index: number) {
+    this.tasks.update((tasks) => {
+      return tasks.map((task, position) => {
+        if (position === index) {
+          return {
+            ...task,
+            editing: !task.editing,
+          }
+        }
+        return {
+          ...task,
+          editing: false,
+        };
+      });
+    })
+  }
+
+  updateTaskText(index: number, event: Event) {
+    const input = event.target as HTMLInputElement;
+    const value = input.value;
+    this.tasks.update((tasks) => {
+      return tasks.map((task, position) => {
+        if (position === index) {
+          return {
+            ...task,
+            title: input.value,
+            editing: false,
+          }
+        }
+        return task;
+      });
+    })
+  }
 }
