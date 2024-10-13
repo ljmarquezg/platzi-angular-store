@@ -29,6 +29,7 @@ export class LabsComponent {
   });
 
   colorCtrl = new FormControl();
+  widthCtrl = new FormControl('100');
 
   constructor() {
     this.colorCtrl.valueChanges.subscribe((color) => {
