@@ -20,12 +20,12 @@ export class LabsComponent {
   disabled = true;
   img = 'https://angular.io/assets/images/logos/angular/angular.png';
 
-  person = {
+  person = signal({
     name:'Labs',
-    age: 30,
+    age: 5,
     disabled: true,
     avatar: 'https://angular.io/assets/images/logos/angular/angular.png',
-  }
+  });
 
   clickHandler() {
     alert('Hello Labs');
@@ -40,5 +40,21 @@ export class LabsComponent {
   keyDownHandler(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
     console.log(input.value);
+  }
+
+  changeName(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.person.update((person) => ({
+      ...person,
+      name: input.value,
+    }));
+  }
+
+  changeAge(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.person.update((person) => ({
+      ...person,
+      age: parseInt(input.value),
+    }));
   }
 }

@@ -9,13 +9,13 @@
     <hr />
 
     <img [src]="img" alt="">
-    <input type="text" placeholder="Type new todo" [value]="name"/>
+    <input type="text" placeholder="Type new todo" [value]="name()"/>
     <button [disabled]="disabled">Change name</button>
 
     <hr />
-    <h2>{{ person.name }}</h2>
-    <img [src]="person.avatar" alt="">
-    <input type="number" placeholder="18" [value]="person.age"/>
+    <h2>{{ person().name }}</h2>
+    <img [src]="person().avatar" alt="">
+    <input type="number" placeholder="18" [value]="person().age"/>
     <button [disabled]="disabled">Change name</button>
 
     <hr />
@@ -39,4 +39,28 @@
             {{ i }} - {{task}}
         </li>
     </ul>
+
+    <hr />
+    <h2>Actualizar datos del usuario con signal</h2>
+    <input type="number" placeholder="18" [value]="person().age" (change)="changeAge($event)"/>
+    <input type="text" (change)="changeName($event)" [value]="person().name"/>
+
+    {{ person().age}} {{person().name}}
+    <div *ngIf="1 !== 1">
+        <h2>NgIf</h2>
+        <p>Esto es un parrafo</p>
+    </div>
+
+    <div *ngIf="name() === 'nicolas'">
+        Soy Nicolas
+    </div>
+
+    <div *ngIf="person().name === 'nicolas' && person().age > 18; else elseBlock">
+        Soy Nicolas y soy mayor de 18
+    </div>
+    <ng-template #elseBlock>
+        <div>
+            No soy Nicolas y soy menor de 18
+        </div>
+    </ng-template>
 </div>
