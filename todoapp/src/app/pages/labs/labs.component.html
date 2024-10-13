@@ -42,18 +42,8 @@
 
     <hr />
     <h2>Actualizar datos del usuario con signal</h2>
-    <input type="number" placeholder="18" [value]="person().age" (change)="changeAge($event)"/>
-    <input type="text" (change)="changeName($event)" [value]="person().name"/>
-
-    {{ person().age}} {{person().name}}
-    <div *ngIf="1 !== 1">
-        <h2>NgIf</h2>
-        <p>Esto es un parrafo</p>
-    </div>
-
-    <div *ngIf="name() === 'nicolas'">
-        Soy Nicolas
-    </div>
+    <p><input type="number" placeholder="18" [value]="person().age" (change)="changeAge($event)"/></p>
+    <p><input type="text" (change)="changeName($event)" [value]="person().name"/></p>
 
     <div *ngIf="person().name === 'nicolas' && person().age > 18; else elseBlock">
         Soy Nicolas y soy mayor de 18
@@ -63,4 +53,12 @@
             No soy Nicolas y soy menor de 18
         </div>
     </ng-template>
+
+    <div [ngSwitch]="person().name">
+        <div *ngSwitchCase="'nicolas'">Soy Nicolas</div>
+        <div *ngSwitchCase="'juan'">Soy Juan</div>
+        <div *ngSwitchCase="'ana'">Soy Ana</div>
+        <div *ngSwitchDefault>Yo no soy nadie</div>
+    </div>
+    <hr />
 </div>
