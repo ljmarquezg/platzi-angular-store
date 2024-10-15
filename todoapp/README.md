@@ -22,6 +22,23 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Install dependencies
 Run `npm install` to install the project dependencies.
 
+- **Migration to New Syntax in Angular 17**
+
+  - **Introduction**
+  - This document serves as a comprehensive guide for migrating your Angular applications to the new syntax introduced in Angular 17. This new syntax brings several enhancements that improve performance, streamline development, and provide better readability. Following this guide will ensure a smooth transition and help you leverage the latest features in your Angular applications.
+
+  - **Migration Steps**
+    - Follow these steps to migrate your existing Angular application to the new syntax:
+    - 1. **Update Angular CLI**
+      - ```npm install -g @angular/cli@latest```
+    - 2. **Upgrade Angular Packages**
+    - Upgrade your Angular packages to version 17. You can do this using the following command:
+    - Ensure that you are using the latest version of the Angular CLI. Run the following command to update:
+      - ```ng update @angular/core @angular/cli```
+    - 3. **Upgrade Angular Packages**
+    - Upgrade your Angular syntax to version 17. You can do this using the following command:
+      - ```ng g @angular/core:control-flow```
+      
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, effect, inject, Injector, OnInit, signal } from '@angular/core';
 import { Task } from '../../../models/task.model';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -7,9 +7,8 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
   selector: 'app-home',
   standalone: true,
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-  ],
+    ReactiveFormsModule
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
