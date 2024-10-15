@@ -54,25 +54,6 @@
         </div>
     </ng-template>
 
-    <h2>New Sintax</h2>
-
-    @if(person().name === 'nicolas') {
-        <div>
-            Soy el nuevo Nicolas
-        </div>
-    }
-    
-    @if (person().name === 'nicolas' && person().age > 18) {
-        <div>
-            Soy Nicolas y soy mayor de 18
-        </div>
-    } @else {
-        <div>
-            No soy Nicolas y soy menor de 18
-        </div>
-    }
-
-
     <div [ngSwitch]="person().name">
         <div *ngSwitchCase="'nicolas'">Soy Nicolas</div>
         <div *ngSwitchCase="'juan'">Soy Juan</div>
@@ -98,4 +79,48 @@
         {{nameCtrl.invalid}} - {{nameCtrl.touched}}
         <span class="message-error" [class.show]="nameCtrl.invalid && nameCtrl.touched">nombre inválido</span>
     </p>
+
+    <h2>New Sintax</h2>
+
+    @if(person().name === 'nicolas') {
+        <div>
+            Soy el nuevo Nicolas
+        </div>
+    }
+
+    @if (person().name === 'nicolas' && person().age > 18) {
+        <div>
+            Soy Nicolas y soy mayor de 18
+        </div>
+    } @else {
+        <div>
+            No soy Nicolas y soy menor de 18
+        </div>
+    }
+
+    <h3>*ngFor to {{'@for{}'}}</h3>
+    <ul>
+        <p>Total: {{tasks().length}}</p>
+        @for (task of tasks(); track task; let i = $index) {
+            <li>{{ i }} - {{task}}</li>
+        } @empty {
+            <li>No hay tareas</li>
+        }
+    </ul>
+
+    <h3>*ngSwitch to {{'@switch{}'}}</h3>
+    @switch(person().name){
+        @case('nicolas') {
+            <p>Soy Nicolas</p>
+        }
+        @case('juan') {
+            <p>Soy Juan</p>
+        }
+        @case('ana') {
+            <p>Soy Ana</p>
+        }
+        @default {
+            <p>Yo no soy nadie</p>
+        }
+    }
 </div>
