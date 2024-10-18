@@ -1,11 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { ProductComponent } from '../../components/product/product.component';
 import { Product } from '../../../shared/module/product.models';
+import { HeaderComponent } from "../../../shared/components/header/header.component";
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [ProductComponent],
+  imports: [ProductComponent, HeaderComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
@@ -28,6 +29,27 @@ export class ListComponent {
       {
         id: Date.now() + 2,
         title: 'Product 2',
+        price: 20,
+        img: `${this.imgSrc}${Math.random()}`,
+        createdAt: new Date().toDateString()
+      },
+      {
+        id: Date.now() + 2,
+        title: 'Product 3',
+        price: 20,
+        img: `${this.imgSrc}${Math.random()}`,
+        createdAt: new Date().toDateString()
+      },
+      {
+        id: Date.now() + 2,
+        title: 'Product 3',
+        price: 20,
+        img: `${this.imgSrc}${Math.random()}`,
+        createdAt: new Date().toDateString()
+      },
+      {
+        id: Date.now() + 2,
+        title: 'Product 3',
         price: 20,
         img: `${this.imgSrc}${Math.random()}`,
         createdAt: new Date().toDateString()
