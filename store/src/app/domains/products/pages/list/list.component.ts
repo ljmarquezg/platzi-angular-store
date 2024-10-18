@@ -12,4 +12,8 @@ export class ListComponent {
   img = `https://picsum.photos/640/640?=r${Math.random()}`
   price = 100
   title = 'Product Title'
+
+  fromChild(event: string) {
+    console.log(event)
+  }
 }
