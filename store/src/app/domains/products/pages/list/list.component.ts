@@ -9,5 +9,7 @@ import { ProductComponent } from '../../components/product/product.component';
   styleUrl: './list.component.scss'
 })
 export class ListComponent {
-
+  img = `https://picsum.photos/640/640?=r${Math.random()}`
+  price = 100
+  title = 'Product Title'
 }
