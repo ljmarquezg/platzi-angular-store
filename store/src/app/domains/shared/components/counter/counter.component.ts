@@ -22,6 +22,10 @@ export class CounterComponent {
     console.log('--'.repeat(20));
     console.log(changes);
     console.log('--'.repeat(10));
+    const duration = changes['duration'];
+    if (duration) {
+      this.doSomething();
+    }
   }
 
   ngOnInit() {
@@ -43,5 +47,10 @@ export class CounterComponent {
   ngOnDestroy() {
     console.log('ngOnDestroy');
     console.log('--'.repeat(20));
+  }
+
+  doSomething() {
+    console.log('dirationChanged');
+    console.log('--'.repeat(10));
   }
 }
