@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { ProductComponent } from '../../components/product/product.component';
 import { Product } from '../../../shared/module/product.models';
 import { HeaderComponent } from "../../../shared/components/header/header.component";
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-list',
@@ -16,6 +17,7 @@ export class ListComponent {
   title = 'Product Title';
 
   products = signal<Product[]>([]);
+  cart = signal<Product[]>([]);
 
   constructor() {
     const initProducts: Product[] = [
@@ -66,7 +68,7 @@ export class ListComponent {
     this.products.set(initProducts);
   }
 
-  fromChild(event: string) {
-    console.log(event)
+  addToCart(product: Product) {
+    this.cart.update(statePrev => [...statePrev, product]);
   }
 }
