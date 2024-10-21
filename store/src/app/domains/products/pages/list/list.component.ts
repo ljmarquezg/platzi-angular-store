@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ProductComponent } from '../../components/product/product.component';
 import { Product } from '../../../shared/module/product.models';
 import { HeaderComponent } from "../../../shared/components/header/header.component";
 import { state } from '@angular/animations';
+import { CartService } from '../../../shared/services/cart.service';
 
 @Component({
   selector: 'app-list',
@@ -12,12 +13,13 @@ import { state } from '@angular/animations';
   styleUrl: './list.component.scss'
 })
 export class ListComponent {
+  private cartService = inject(CartService);
   imgSrc = 'https://picsum.photos/640/640?=r';
   price = 100;
   title = 'Product Title';
 
   products = signal<Product[]>([]);
-  cart = signal<Product[]>([]);
+  cart = this.cartService.cart;
 
   constructor() {
     const initProducts: Product[] = [
@@ -68,7 +70,7 @@ export class ListComponent {
     this.products.set(initProducts);
   }
 
-  addToCart(product: Product) {
-    this.cart.update(statePrev => [...statePrev, product]);
+ addToCart(product: Product) {
+    this.cartService.addToCart(product);
   }
 }
