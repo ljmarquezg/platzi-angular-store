@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import {formatDistance} from 'date-fns';
 
 @Pipe({
   name: 'timeAgo',
@@ -6,8 +7,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TimeAgoPipe implements PipeTransform {
 
-  transform(value: unknown): unknown {
-    const now = new Date().getTime();
+  transform(value: string): unknown {
+    /* const now = new Date().getTime();
     let date = now;
 
     if(value instanceof Date) {
@@ -45,7 +46,12 @@ export class TimeAgoPipe implements PipeTransform {
         return seconds === 1 ? 'hace un segundo' : `hace ${seconds} segundos`;
       default:
         return 'justo ahora';
-    }
+    } */
+
+    const date = new Date(value);
+    const today = new Date();
+
+    return formatDistance( today,date, { addSuffix: true });
   }
 
 }
