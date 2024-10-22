@@ -4,6 +4,7 @@ import { Product } from '../../../shared/module/product.models';
 import { HeaderComponent } from "../../../shared/components/header/header.component";
 import { state } from '@angular/animations';
 import { CartService } from '../../../shared/services/cart.service';
+import { ProductService } from '../../../shared/services/product.service';
 
 @Component({
   selector: 'app-list',
@@ -14,6 +15,8 @@ import { CartService } from '../../../shared/services/cart.service';
 })
 export class ListComponent {
   private cartService = inject(CartService);
+  private productService = inject(ProductService);
+
   imgSrc = 'https://picsum.photos/640/640?=r';
   price = 100;
   title = 'Product Title';
@@ -21,56 +24,25 @@ export class ListComponent {
   products = signal<Product[]>([]);
   cart = this.cartService.cart;
 
-  constructor() {
-    const initProducts: Product[] = [
-      {
-        id: Date.now(),
-        title: 'Product 1',
-        price: 100,
-        img: `${this.imgSrc}${Math.random()}`,
-        createdAt: new Date().toDateString()
-      },
-      {
-        id: Date.now() + 2,
-        title: 'Product 2',
-        price: 20,
-        img: `${this.imgSrc}${Math.random()}`,
-        createdAt: new Date().toDateString()
-      },
-      {
-        id: Date.now() + 2,
-        title: 'Product 3',
-        price: 20,
-        img: `${this.imgSrc}${Math.random()}`,
-        createdAt: new Date().toDateString()
-      },
-      {
-        id: Date.now() + 2,
-        title: 'Product 3',
-        price: 20,
-        img: `${this.imgSrc}${Math.random()}`,
-        createdAt: new Date().toDateString()
-      },
-      {
-        id: Date.now() + 2,
-        title: 'Product 3',
-        price: 20,
-        img: `${this.imgSrc}${Math.random()}`,
-        createdAt: new Date().toDateString()
-      },
-      {
-        id: Date.now() + 2,
-        title: 'Product 3',
-        price: 20,
-        img: `${this.imgSrc}${Math.random()}`,
-        createdAt: new Date().toDateString()
-      },
-    ];
+  ngOnInit() {
+    this.productService.getProducts().subscribe({
+      next: (products: Product[]) => {
 
-    this.products.set(initProducts);
+        '["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH3t_bS8mNcYHIna9HbERQSOujwQ7i8jQXcQ&s"'
+
+        const items = products.map(product => ({
+          ...product,
+          images: product.images.map(a => a.replace(/\["|"\]/g, '')),
+        }));
+        this.products.set(items);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
   }
 
- addToCart(product: Product) {
+  addToCart(product: Product) {
     this.cartService.addToCart(product);
   }
 }
