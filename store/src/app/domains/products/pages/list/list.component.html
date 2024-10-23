@@ -1,5 +1,5 @@
 <div class="grid grid-cols-4 gap-8 mt-4">
     @for (product of products(); track product.id) {
-    <app-product [product]="product" (addToCart)="addToCart(product)" />
+        <app-product [product]="product" (addToCart)="addToCart(product)" />
     }
 </div>
