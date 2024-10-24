@@ -2,6 +2,7 @@ import { CommonModule, CurrencyPipe, UpperCasePipe } from '@angular/common';
 import { Component, inject, Input, signal, Signal, WritableSignal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '@shared/module/product.model';
+import { CartService } from '@shared/services/cart.service';
 import { ProductService } from '@shared/services/product.service';
 
 @Component({
@@ -18,6 +19,7 @@ import { ProductService } from '@shared/services/product.service';
 export class ProductDetailComponent {
   @Input() id?: string;
   private productService = inject(ProductService);
+  private cartService = inject(CartService);
   product: WritableSignal<Product | null> = signal<Product | null>(null);
   cover = signal<string>('');
 
@@ -40,5 +42,12 @@ export class ProductDetailComponent {
 
   changeCoverImage(image: string) {
     this.cover.set(image);
+  }
+
+  addToCart() {
+    const product = this.product();
+    if(product ) {
+      this.cartService.addToCart(product);
+    }
   }
 }

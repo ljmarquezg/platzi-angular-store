@@ -10,10 +10,12 @@
         <div class="flex items-center justify-center mt-1">
             <div class="grid grid-cols-3 gap-1">
                 @for(image of product()?.images; track product(); let i = $index) {
-                    <img alt="ecommerce" 
-                        class="object-cover object-center rounded border-2 border-gray-200"
+                    <img 
+                        alt="ecommerce" 
+                        class="object-cover object-center rounded border-2 border-gray-200 cursor-pointer"
                         [src]="image"
                         (click)="changeCoverImage(image)"
+                        [class.border-red-400]="image === cover()"
                     />
                 }
             </div>
@@ -32,7 +34,10 @@
         <p class="title-font font-medium text-2xl text-gray-900 mt-5">
             {{product()?.price | currency : '$' : 'symbol': '1.2'}}
         </p>
-        <button class="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
+        <button 
+            class="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+            (click)="addToCart()"
+        >
             Add ToCart
         </button>
     </div>
